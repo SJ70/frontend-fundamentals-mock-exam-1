@@ -1,7 +1,7 @@
 import { ProductResponse } from 'response/ProductResponse';
 import { Border, colors, ListHeader, ListRow, Spacing } from 'tosslib';
 import { formatCurrency } from 'utils/formatter';
-import { ProductRow } from './ProductRow';
+import { Products } from './Products';
 
 interface ResultsProps {
   targetAmount: number;
@@ -73,17 +73,7 @@ export function Results({
       <ListHeader title={<ListHeader.TitleParagraph fontWeight="bold">추천 상품 목록</ListHeader.TitleParagraph>} />
       <Spacing size={12} />
 
-      {products
-        .filter(product => product.availableTerms === savingTerm)
-        .sort((a, b) => b.annualRate - a.annualRate)
-        .map(product => (
-          <ProductRow
-            key={product.id}
-            product={product}
-            selectedProduct={selectedProduct}
-            setSelectedProduct={setSelectedProduct}
-          />
-        ))}
+      <Products products={products} selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} />
 
       <Spacing size={40} />
 

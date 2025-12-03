@@ -65,10 +65,9 @@ export function SavingsCalculatorPage() {
 
       {selectedMenu === 'products' && (
         <Products
-          products={products}
+          products={products.filter(product => product.availableTerms === savingTerm)}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
-          selectedSavingTerm={savingTerm}
         />
       )}
       {selectedMenu === 'results' && (
@@ -77,7 +76,9 @@ export function SavingsCalculatorPage() {
           monthlyPayment={Number(monthlyPayment)}
           savingTerm={savingTerm}
           annualRate={selectedProduct ? selectedProduct.annualRate : 0}
-          products={products}
+          products={products
+            .filter(product => product.availableTerms === savingTerm)
+            .sort((a, b) => b.annualRate - a.annualRate)}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
         />
