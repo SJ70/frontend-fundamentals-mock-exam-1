@@ -53,7 +53,7 @@ export function Results({ targetAmount, monthlyPayment, savingTerm, annualRate }
         }
       />
 
-      {/* <Spacing size={8} />
+      <Spacing size={8} />
       <Border height={16} />
       <Spacing size={8} />
 
@@ -89,7 +89,7 @@ export function Results({ targetAmount, monthlyPayment, savingTerm, annualRate }
         onClick={() => {}}
       />
 
-      <Spacing size={40} /> */}
+      <Spacing size={40} />
 
       {/* 아래는 사용자가 적금 상품을 선택하지 않고 계산 결과 탭을 선택했을 때 출력해주세요. */}
       {/* <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품을 선택해주세요." />} /> */}

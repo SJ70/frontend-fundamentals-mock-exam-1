@@ -64,7 +64,12 @@ export function SavingsCalculatorPage() {
       </Tab>
 
       {selectedMenu === 'products' && (
-        <Products products={products} selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} />
+        <Products
+          products={products}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+          selectedSavingTerm={savingTerm}
+        />
       )}
       {selectedMenu === 'results' && (
         <Results
