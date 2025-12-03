@@ -21,6 +21,8 @@ export function SavingsCalculatorPage() {
   const [monthlyPayment, setMonthlyPayment] = useState<string>('');
   const [savingTerm, setSavingTerm] = useState<number>(6);
 
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+
   useEffect(() => {
     fetchProductsAPI().then(data => setProducts(data));
   }, []);
@@ -85,8 +87,8 @@ export function SavingsCalculatorPage() {
               bottomProps={{ fontSize: 13, color: colors.grey600 }}
             />
           }
-          right={<Assets.Icon name="icon-check-circle-green" />}
-          onClick={() => {}}
+          right={product.id === selectedProductId && <Assets.Icon name="icon-check-circle-green" />}
+          onClick={() => setSelectedProductId(product.id)}
         />
       ))}
 
