@@ -76,9 +76,7 @@ export function SavingsCalculatorPage() {
           monthlyPayment={Number(monthlyPayment)}
           savingTerm={savingTerm}
           annualRate={selectedProduct ? selectedProduct.annualRate : 0}
-          products={products
-            .filter(product => product.availableTerms === savingTerm)
-            .sort((a, b) => b.annualRate - a.annualRate)}
+          products={products}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
         />

@@ -43,7 +43,14 @@ export function Results({
       <ListHeader title={<ListHeader.TitleParagraph fontWeight="bold">추천 상품 목록</ListHeader.TitleParagraph>} />
       <Spacing size={12} />
 
-      <Products products={products} selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} />
+      <Products
+        products={products
+          .filter(product => product.availableTerms === savingTerm)
+          .sort((a, b) => b.annualRate - a.annualRate)
+          .slice(0, 2)}
+        selectedProduct={selectedProduct}
+        setSelectedProduct={setSelectedProduct}
+      />
 
       <Spacing size={40} />
     </>
