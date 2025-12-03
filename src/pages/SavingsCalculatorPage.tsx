@@ -75,8 +75,11 @@ export function SavingsCalculatorPage() {
         <Results
           targetAmount={Number(targetAmount)}
           monthlyPayment={Number(monthlyPayment)}
-          savingTerm={selectedProduct ? selectedProduct.availableTerms : 0}
+          savingTerm={savingTerm}
           annualRate={selectedProduct ? selectedProduct.annualRate : 0}
+          products={products}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
         />
       )}
     </>

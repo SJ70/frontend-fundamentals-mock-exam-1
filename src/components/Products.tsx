@@ -1,6 +1,5 @@
 import { ProductResponse } from 'response/ProductResponse';
-import { Assets, colors, ListRow } from 'tosslib';
-import { formatCurrency } from 'utils/formatter';
+import { ProductRow } from './ProductRow';
 
 interface ProductsProps {
   products: ProductResponse[];
@@ -15,21 +14,11 @@ export function Products({ products, selectedProduct, setSelectedProduct, select
       {products
         .filter(product => product.availableTerms === selectedSavingTerm)
         .map(product => (
-          <ListRow
+          <ProductRow
             key={product.id}
-            contents={
-              <ListRow.Texts
-                type="3RowTypeA"
-                top={product.name}
-                topProps={{ fontSize: 16, fontWeight: 'bold', color: colors.grey900 }}
-                middle={`연 이자율: ${product.annualRate}%`}
-                middleProps={{ fontSize: 14, color: colors.blue600, fontWeight: 'medium' }}
-                bottom={`${formatCurrency(product.minMonthlyAmount)}원 ~ ${formatCurrency(product.maxMonthlyAmount)}원 | ${product.availableTerms}개월`}
-                bottomProps={{ fontSize: 13, color: colors.grey600 }}
-              />
-            }
-            right={product === selectedProduct && <Assets.Icon name="icon-check-circle-green" />}
-            onClick={() => setSelectedProduct(product)}
+            product={product}
+            selectedProduct={selectedProduct}
+            setSelectedProduct={setSelectedProduct}
           />
         ))}
     </>
