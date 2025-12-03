@@ -1,7 +1,6 @@
 {
   "name": "toss-savings-calculator",
   "private": true,
-  "packageManager": "yarn@4.6.0",
   "scripts": {
     "dev": "vite"
   },
