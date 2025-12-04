@@ -1,12 +1,11 @@
 import { Border, NavigationBar, SelectBottomSheet, Spacing, Tab, TextField } from 'tosslib';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ProductResponse } from 'response/ProductResponse';
-import fetchProductsAPI from 'api/fetchProductsAPI';
 import { Products } from 'components/Products';
 import { Results } from 'components/Results';
+import { useProducts } from 'api/useProducts';
 
 export function SavingsCalculatorPage() {
-  const [products, setProducts] = useState<ProductResponse[]>([]);
   const [targetAmount, setTargetAmount] = useState<string>('');
   const [monthlyPayment, setMonthlyPayment] = useState<string>('');
   const [savingTerm, setSavingTerm] = useState<number>(6);
@@ -15,9 +14,17 @@ export function SavingsCalculatorPage() {
 
   const [selectedMenu, setSelectedMenu] = useState<'products' | 'results'>('products');
 
-  useEffect(() => {
-    fetchProductsAPI().then(data => setProducts(data));
-  }, []);
+  const { data: products, isLoading, isError } = useProducts();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
+  if (!products) {
+    return <div>null</div>;
+  }
 
   return (
     <>
@@ -76,7 +83,9 @@ export function SavingsCalculatorPage() {
           monthlyPayment={Number(monthlyPayment)}
           savingTerm={savingTerm}
           annualRate={selectedProduct ? selectedProduct.annualRate : 0}
-          products={products}
+          products={products
+            .filter(product => product.availableTerms === savingTerm)
+            .sort((a, b) => b.annualRate - a.annualRate)}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
         />
